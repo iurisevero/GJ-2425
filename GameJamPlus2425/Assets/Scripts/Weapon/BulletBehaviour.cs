@@ -23,7 +23,7 @@ namespace GJ.Bullet{
         private SpriteRenderer bulletSpr;
         public Vector2 direction;
 
-        private Rigidbody2D rb;
+        private Rigidbody rb;
 
         void OnEnable()
         {
@@ -62,7 +62,7 @@ namespace GJ.Bullet{
             }
         }
 
-        void OnTriggerEnter2D(Collider2D col) {
+        void OnTriggerEnter(Collider col) {
             if(col.CompareTag("Player") && type == BulletType.enemyBullet){
                 //TODO DEALS DAMAGE PLAYER
                 Debug.Log("Player receives damage");

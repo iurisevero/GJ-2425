@@ -254,8 +254,8 @@ MonoBehaviour:
   player: {fileID: 0}
   maxRayDistance: 15
   acelerationRate: 0.1
-  minDistanceMovement: 2.43
-  minDistanceAttack: 4.83
+  minDistanceMovement: 10
+  minDistanceAttack: 20
   isAttackAndMove: 0
   weapon: {fileID: 5284032897735263069}
   gunData: {fileID: 11400000, guid: 74a4af9dea3bc144ca32909cf6c8babf, type: 2}

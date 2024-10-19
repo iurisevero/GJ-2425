@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+  - Enviroment
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
+  - Bullets
+  - Enviroment
   - 
   - 
   - 

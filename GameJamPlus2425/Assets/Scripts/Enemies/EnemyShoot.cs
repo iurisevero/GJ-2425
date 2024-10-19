@@ -45,24 +45,32 @@ namespace GJ.AI
 
                 if (distToPlayer <= minDistanceAttack && isPlayerVisible && !isAttacking)
                 {
-                    Debug.Log("aaa");
                     StartCoroutine(Attack());
                 }
                 SetMovement();  
             }  
         }
 
-        private void AimWeapon()
-        {
-            if (isAiming)
-            {
-                Vector3 aimDirection = player.position - weapon.transform.position;
-                Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, aimDirection);
-                targetRotation *= Quaternion.Euler(0f, 0f, 90f);  // Adjust rotation by 90 degrees
-                weapon.transform.rotation = targetRotation;
-            }
+private void AimWeapon()
+{
+    if (isAiming && player != null)
+    {
+        // Calcular a direção do jogador em relação à arma
+        Vector3 directionToPlayer = (player.position - weapon.transform.position).normalized;
 
-        }
+        // Calcular os ângulos de rotação desejados para y e z
+        float angleY = Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg;
+        float angleZ = Mathf.Asin(directionToPlayer.y) * Mathf.Rad2Deg;
+
+        // Definir a rotação com x fixo em 0 e aplicar localmente
+        Quaternion localRotation = Quaternion.Euler(0, angleY, angleZ);
+        weapon.transform.localRotation = localRotation;
+    }
+}
+
+
+
+
 
 
         private IEnumerator Attack(){

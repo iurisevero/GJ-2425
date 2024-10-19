@@ -16,11 +16,11 @@ MonoBehaviour:
   spread: 0
   numberOfBullets: 1
   isRandom: 0
-  fireRate: 1
+  fireRate: 0.5
   bulletSpeed: 1
   bulletVelocity: {x: 0, y: 0}
-  lifeTime: 1
-  range: 1
+  lifeTime: 5
+  range: 40
   angleVelocity: 100
   damage: 5
   type: 0
