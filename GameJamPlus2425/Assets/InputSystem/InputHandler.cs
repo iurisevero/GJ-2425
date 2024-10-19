@@ -9,6 +9,7 @@ public class InputHandler : MonoBehaviour
     public bool jump;
     public bool sprint;
     public bool fire;
+    public bool fireRight;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -45,6 +46,11 @@ public class InputHandler : MonoBehaviour
         FireInput(value.isPressed);
     }
 
+    public void OnFireRight(InputValue value)
+    {
+        FireRightInput(value.isPressed);
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
         move = newMoveDirection;
@@ -68,6 +74,11 @@ public class InputHandler : MonoBehaviour
     public void FireInput(bool newFireState)
     {
         fire = newFireState;
+    }
+
+    public void FireRightInput(bool newFireState)
+    {
+        fireRight = newFireState;
     }
     
     private void OnApplicationFocus(bool hasFocus)

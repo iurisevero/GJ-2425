@@ -228,13 +228,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
   bulletPrefab: {fileID: 4176484994824527831, guid: 9e4c0da8588942649830331a1756f609, type: 3}
-  specialBulletPrefab: {fileID: 0}
+  specialBulletPrefab: {fileID: 7443938789107663931, guid: 8b7affd86e676424a8a4ddda03801fed, type: 3}
   bulletSpawn: {fileID: 458216761989443675}
   rayhit: 1
   fireRate: 1.5
   bulletVelocity: 30
   bulletLifeTime: 3
   bulletRange: 100
+  specialCooldown: 10
 --- !u!1 &1559226229356058934
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +438,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   fire: 0
+  fireRight: 0
   analogMovement: 1
   cursorLocked: 1
   cursorInputForLook: 1
