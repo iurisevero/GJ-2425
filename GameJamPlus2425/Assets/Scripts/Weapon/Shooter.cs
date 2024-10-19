@@ -27,6 +27,10 @@ public class Shooter : MonoBehaviour
     {
         bulletPoolKey = this.name + "Bullet";
         canShoot = true;
+        if (playerCamera == null)
+		{
+			playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		}
     }
 
     // Start is called before the first frame update
