@@ -10,6 +10,7 @@ namespace GJ.AI
         {
             myTransform = GetComponent<Transform>();
             enemyStats = GetComponent<EnemyStats>();
+            sprLocker = GetComponentInChildren<AISpriteLocker>();
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
             agent = GetComponent<NavMeshAgent>();
             agent.angularSpeed = enemyStats.enemyData.AngularSpeed;
@@ -19,9 +20,17 @@ namespace GJ.AI
 
         }
 
+
+
         protected bool IsPlayerVisible()
         {
             return false;
+        }
+
+        protected virtual void ChangeSpriteDirection(){
+            if(sprLocker != null && player != null){
+                sprLocker.LockSprite(player.transform);
+            }
         }
 
         protected virtual void UpdateMovementStats()
@@ -53,6 +62,8 @@ namespace GJ.AI
         protected Transform myTransform;
         protected EnemyStats enemyStats;
         protected Vector3 lastPlayerPosition;
+        protected AISpriteLocker sprLocker;
+
 
         [Header("Target")]
         [SerializeField] protected Transform player;
@@ -66,7 +77,7 @@ namespace GJ.AI
 
         public bool isAiming { get;  set; }  
         public bool isAttacking { get;  set; }  
-
+        
         protected NavMeshAgent agent;
 
         protected Rigidbody2D rb;

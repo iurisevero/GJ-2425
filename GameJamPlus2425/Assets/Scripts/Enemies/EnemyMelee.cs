@@ -25,7 +25,7 @@ namespace GJ.AI
                 
                 return;
             }
-            
+
             if (player != null)
             {      
                 Vector3 playerPosition = player.position;
@@ -47,6 +47,8 @@ namespace GJ.AI
                 }
                 SetMovement();  
             }  
+
+            ChangeSpriteDirection();
         }
 
 
