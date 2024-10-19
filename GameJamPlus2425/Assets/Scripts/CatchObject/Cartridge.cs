@@ -3,43 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Cartridge : MonoBehaviour
+public class Cartridge : Interactable
 {
-    // Start is called before the first frame update
-    private Inventory inventory;
-    public string cartridgeKey = "";
     // UI de ação temporário
-    public GameObject pressActionObj;
+    public string cartridgeKey = "";
+
+    public override void OnActionInput(Inventory inventory)
+    {
+        // base.OnActionInput(inventory);
+        inventory.AddCartridge(cartridgeKey);
+        DestroyCartridge();
+    }
 
     public void DestroyCartridge()
     {
         pressActionObj.SetActive(false);
-        inventory.currentTriggeredCartridge = null;
+        inventory.currentInteractableObject = null;
         inventory = null;
         Destroy(this.gameObject);
     } 
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            inventory = other.gameObject.GetComponent<Inventory>();
-            inventory.currentTriggeredCartridge = this;
-
-            // Show UI
-            pressActionObj.SetActive(true);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            inventory.currentTriggeredCartridge = null;
-            inventory = null;
-
-            // Hide UI
-            pressActionObj.SetActive(false);
-        }
-    }
 }
