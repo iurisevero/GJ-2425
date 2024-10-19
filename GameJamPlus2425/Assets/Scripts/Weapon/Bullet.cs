@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody rb;
+    private Vector3 initialPos;
     private bool bulletShooted = false;
     public float bulletVelocity = 10f;
     public float lifeTime = 1.25f;
@@ -18,8 +19,14 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (bulletShooted)
+        if (bulletShooted) {
             rb.AddForce(transform.forward.normalized * bulletVelocity, ForceMode.Impulse);
+            
+            if(Mathf.Abs(Vector3.Distance(initialPos, transform.position)) > bulletRange) {
+                CancelInvoke("Enqueue");
+                Enqueue();
+            }
+        }
     }
 
     private void OnEnable()
@@ -52,5 +59,6 @@ public class Bullet : MonoBehaviour
     {
         Invoke("Enqueue", lifeTime);
         bulletShooted = true;
+        initialPos = transform.position;
     }
 }

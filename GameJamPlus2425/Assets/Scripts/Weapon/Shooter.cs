@@ -63,15 +63,15 @@ public class Shooter : MonoBehaviour
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-        Vector3 targetPoint = new Vector3();
+        Vector3 targetPoint;
         if(Physics.Raycast(ray, out hit, bulletRange)) {
             targetPoint = hit.point;
         } else {
             targetPoint = ray.GetPoint(bulletRange);
         }
 
-        if(rayhit) {
-            Debug.Log("Hit here");
+        if(rayhit && hit.collider != null) {
+            Debug.Log("Hit ray hitted: " + hit.collider.name);
         }
 
         // Spawn projectile

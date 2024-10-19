@@ -42,7 +42,6 @@ public class InputHandler : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
-        Debug.Log("OnFire: " + value.isPressed);
         FireInput(value.isPressed);
     }
 
