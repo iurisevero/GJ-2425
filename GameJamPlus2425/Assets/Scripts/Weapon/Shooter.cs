@@ -11,6 +11,8 @@ public class Shooter : MonoBehaviour
     private InputHandler _input;
     private bool canShoot;
     private float timeFromLastShot;
+    private bool canShootSpecial;
+    private float timeFromLastSpecial;
 
     public Camera playerCamera;
     public GameObject bulletPrefab;
@@ -22,6 +24,8 @@ public class Shooter : MonoBehaviour
     public float bulletVelocity = 30;
     public float bulletLifeTime = 3f;
     public float bulletRange = 100;
+
+    public float specialCooldown = 10f;
 
     private void Awake()
     {
@@ -38,6 +42,8 @@ public class Shooter : MonoBehaviour
     {
         _input = GetComponentInParent<InputHandler>();
         GameObjectPoolController.AddEntry(bulletPoolKey, bulletPrefab, 10, 50);
+        timeFromLastShot = fireRate;
+        timeFromLastSpecial = specialCooldown;
     }
 
     // Update is called once per frame
@@ -47,12 +53,27 @@ public class Shooter : MonoBehaviour
             Shoot();
         }
 
+        if(_input.fireRight && canShootSpecial) {
+            Debug.Log("Shoot Special");
+            ShootSpecial();
+            _input.fireRight = false;
+        } else if(_input.fireRight) _input.fireRight = false;
+
         if (!canShoot)
         {
             timeFromLastShot += Time.deltaTime;
             if (timeFromLastShot > fireRate)
             {
                 canShoot = true;
+            }
+        }
+
+        if (!canShootSpecial)
+        {
+            timeFromLastSpecial += Time.deltaTime;
+            if (timeFromLastSpecial > specialCooldown)
+            {
+                canShootSpecial = true;
             }
         }
     }
@@ -92,5 +113,13 @@ public class Shooter : MonoBehaviour
 
         // Start firerate cooldown
         timeFromLastShot = 0f;
+    }
+
+    private void ShootSpecial()
+    {
+        canShootSpecial = false;
+        GameObject special = Instantiate(specialBulletPrefab, bulletSpawn.position, Quaternion.identity);
+        special.transform.forward = bulletSpawn.forward;
+        timeFromLastSpecial = 0;
     }
 }
