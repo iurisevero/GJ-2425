@@ -17,5 +17,12 @@ namespace GJ.AI{
         [SerializeField] float maxHealth = 2f;
         public float MaxHealth {get => maxHealth; private set => maxHealth = value;}
 
+        [Header("Default navmesh behaviour")]
+
+        [Header("Timers")]
+        [SerializeField] public float aimingDelay;
+        [SerializeField] public float attackDelay;
+        [SerializeField] public float afterAttackDelay;
+
     }
 }

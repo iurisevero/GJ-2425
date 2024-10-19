@@ -10,8 +10,9 @@ namespace GJ.AI{
     {
         public EnemyData enemyData;
 
+
+        
         [SerializeField] public float currentMoveSpeed;
-        [SerializeField] public float currentAngularSpeed;
         [SerializeField] public float currentAcceleration;
         [SerializeField] public float currentKnockbackRes;
         [SerializeField] public float currentHealth;
@@ -22,7 +23,6 @@ namespace GJ.AI{
         private void OnEnable()
         {   
             currentMoveSpeed = enemyData.MoveSpeed;
-            currentAngularSpeed = enemyData.AngularSpeed;
             currentAcceleration = enemyData.Acceleration;
             currentHealth = enemyData.MaxHealth;
 

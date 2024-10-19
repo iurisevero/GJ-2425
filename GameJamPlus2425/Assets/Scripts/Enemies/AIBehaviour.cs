@@ -8,9 +8,11 @@ namespace GJ.AI
     {
         protected virtual void OnEnable()
         {
+            myTransform = GetComponent<Transform>();
             enemyStats = GetComponent<EnemyStats>();
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
             agent = GetComponent<NavMeshAgent>();
+            agent.angularSpeed = enemyStats.enemyData.AngularSpeed;
             agent.updateRotation = false;
             agent.updateUpAxis = false;
             agent.enabled = true;
@@ -61,11 +63,6 @@ namespace GJ.AI
         [SerializeField] public float minDistanceMovement;
         [SerializeField] public float minDistanceAttack;
         [SerializeField] public bool isAttackAndMove = false;
-
-        //[Header("Timers")]
-        //[SerializeField] public float aimingDelay;
-        //[SerializeField] public float attackDelay;
-        //[SerializeField] public float afterAttackDelay;
 
         public bool isAiming { get;  set; }  
         public bool isAttacking { get;  set; }  
