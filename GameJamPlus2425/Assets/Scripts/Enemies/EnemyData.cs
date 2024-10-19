@@ -3,7 +3,8 @@ using UnityEngine;
 namespace GJ.AI{
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/EnemyData", order = 1)]
     public class EnemyData : ScriptableObject
-    {
+    {   
+        
         [Header("Default navmesh behaviour")]
         [SerializeField] float angularSpeed = 100f;
         public float AngularSpeed {get => angularSpeed; private set => angularSpeed = value;}

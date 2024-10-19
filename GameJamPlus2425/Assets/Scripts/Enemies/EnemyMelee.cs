@@ -48,7 +48,6 @@ namespace GJ.AI
                 SetMovement();  
             }  
 
-            ChangeSpriteDirection();
         }
 
 

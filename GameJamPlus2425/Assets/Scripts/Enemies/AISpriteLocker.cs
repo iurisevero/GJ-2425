@@ -6,11 +6,14 @@ namespace GJ.AI
 {
     public class AISpriteLocker : MonoBehaviour
     {
-        private SpriteRenderer spriteRenderer;
-
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        }
+
+        private void Update(){
+            LockSprite(player);
         }
 
         public void LockSprite(Transform player)
@@ -21,5 +24,11 @@ namespace GJ.AI
             float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, -angle + 90, 0);
         }
+
+        protected SpriteRenderer spriteRenderer;
+        protected Transform player;
+
     }
+
+    
 }

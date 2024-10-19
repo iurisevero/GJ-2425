@@ -10,7 +10,6 @@ namespace GJ.AI
         {
             myTransform = GetComponent<Transform>();
             enemyStats = GetComponent<EnemyStats>();
-            sprLocker = GetComponentInChildren<AISpriteLocker>();
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
             agent = GetComponent<NavMeshAgent>();
             agent.angularSpeed = enemyStats.enemyData.AngularSpeed;
@@ -24,13 +23,28 @@ namespace GJ.AI
 
         protected bool IsPlayerVisible()
         {
-            return false;
-        }
+            float distanceToPlayer = Vector3.Distance(myTransform.position, player.position);
+            if (Time.time > lastRaycastTime + raycastCooldown && distanceToPlayer <= maxRayDistance)
+            {
+                Vector3 directionToPlayer = player.position - myTransform.position;
+                float maxRaycastDistance = 30f; 
+                int layerMask = ~(LayerMask.GetMask("Bullets") | LayerMask.GetMask("Enemy"));
+                hit = Physics2D.Raycast(myTransform.position, directionToPlayer, maxRaycastDistance, layerMask);
 
-        protected virtual void ChangeSpriteDirection(){
-            if(sprLocker != null && player != null){
-                sprLocker.LockSprite(player.transform);
+                lastRaycastTime = Time.time;
+
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                {
+                    lastIsPlayerVisible = true;
+                    return true;
+                }
+                else
+                {
+                    lastIsPlayerVisible = false;
+                    return false;
+                }
             }
+            return lastIsPlayerVisible;
         }
 
         protected virtual void UpdateMovementStats()
@@ -62,7 +76,6 @@ namespace GJ.AI
         protected Transform myTransform;
         protected EnemyStats enemyStats;
         protected Vector3 lastPlayerPosition;
-        protected AISpriteLocker sprLocker;
 
 
         [Header("Target")]

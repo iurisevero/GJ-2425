@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using TMPro;
+using GJ.Bullet;
 
 
 namespace GJ.AI{
@@ -46,6 +46,20 @@ namespace GJ.AI{
         public void Die(){
             isDead = true;
         }
+
+        public SpawnRecipe CreateRecipe(GunData gunData){
+			SpawnRecipe recipe = new SpawnRecipe();
+			recipe.bulletResource = gunData.bulletResource;
+			recipe.numberOfBullets = gunData.numberOfBullets;
+			recipe.bulletSpeed = gunData.bulletSpeed;
+            recipe.lifeTime = gunData.lifeTime;
+            recipe.angleVelocity = gunData.angleVelocity;
+            recipe.damage = gunData.damage;
+            recipe.type =gunData.type;
+			recipe.spread = gunData.spread;
+			recipe.isRandom = gunData.isRandom;
+			return recipe;
+		}
 
 
     }
