@@ -2,14 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace GJ.A
+namespace GJ.AI
 {
     public class AIBehaviour : MonoBehaviour
     {
         protected virtual void OnEnable()
         {
-            rb = GetComponent<Rigidbody2D>();
-            player = GameObject.FindGameObjectWithTag("PlayerCenter")?.transform;
+            enemyStats = GetComponent<EnemyStats>();
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
             agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
@@ -19,17 +19,17 @@ namespace GJ.A
 
         protected bool IsPlayerVisible()
         {
-            
+            return false;
         }
 
         protected virtual void UpdateMovementStats()
         {
-            agent.speed = Mathf.MoveTowards(agent.speed, enemyStats.currentMoveSpeed, acelerationRate * Time.fixedDeltaTime);
+            agent.speed = Mathf.MoveTowards(agent.speed, enemyStats.currentMoveSpeed, enemyStats.currentAcceleration * Time.fixedDeltaTime);
         }
 
         protected virtual void DecelerateMomentum()
         {
-            agent.speed = Mathf.MoveTowards(agent.speed, 0, acelerationRate * Time.fixedDeltaTime);
+            agent.speed = Mathf.MoveTowards(agent.speed, 0, enemyStats.currentAcceleration * Time.fixedDeltaTime);
         }
 
         protected virtual void SetMovement()
@@ -40,28 +40,29 @@ namespace GJ.A
                 lastPlayerPosition = player.position;
             }
 
-            //TODO make die and disable navmesh
-            //if (agent != null && enemyStats.isDead)
-            //{
-            //    agent.enabled = false;
-            //}
+
+            if (agent != null && enemyStats.isDead)
+            {
+                agent.enabled = false;
+            }
 
         }
 
         protected Transform myTransform;
+        protected EnemyStats enemyStats;
+        protected Vector3 lastPlayerPosition;
 
         [Header("Target")]
         [SerializeField] protected Transform player;
         [SerializeField] protected float maxRayDistance = 15f;
 
         [Header("Controllers")]
-        [SerializeField] protected EnemyData data;
         [SerializeField] protected float acelerationRate = 0.1f;
         [SerializeField] public float minDistanceMovement;
         [SerializeField] public float minDistanceAttack;
         [SerializeField] public bool isAttackAndMove = false;
 
-        [Header("Timers")]
+        //[Header("Timers")]
         //[SerializeField] public float aimingDelay;
         //[SerializeField] public float attackDelay;
         //[SerializeField] public float afterAttackDelay;

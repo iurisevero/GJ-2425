@@ -11,9 +11,11 @@ namespace GJ.AI{
         [SerializeField] float acceleration = 20f;    
         public float Acceleration {get => acceleration; private set => acceleration = value;}
 
-        [Header("Default Values")]
         [SerializeField] float moveSpeed = 2f;
         public float MoveSpeed {get => moveSpeed; private set => moveSpeed = value;}
+
+        [SerializeField] float maxHealth = 2f;
+        public float MaxHealth {get => maxHealth; private set => maxHealth = value;}
 
     }
 }
