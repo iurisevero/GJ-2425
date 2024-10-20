@@ -55,7 +55,7 @@ public class Shooter : MonoBehaviour
         reloading = false;
         canShoot = true;
 
-        playerUIController.SetAmmo(0, totalAmmo);
+        if(playerUIController != null)playerUIController.SetAmmo(0, totalAmmo);
     }
 
     // Update is called once per frame
@@ -152,14 +152,14 @@ public class Shooter : MonoBehaviour
     private void RemoveAmmo()
     {
         currentAmmo--;
-        playerUIController.UpdateAmmo(currentAmmo);
+        if(playerUIController != null)playerUIController.UpdateAmmo(currentAmmo);
     }
 
     private void Reload()
     {
         reloading = true;
         // Start reload animation
-        playerUIController.ReloadAmmo(reloadTime);
+        if(playerUIController != null)playerUIController.ReloadAmmo(reloadTime);
         Invoke("SetReloadingValues", reloadTime);
     }
 
@@ -167,6 +167,6 @@ public class Shooter : MonoBehaviour
     {
         reloading = false;
         currentAmmo = totalAmmo;
-        playerUIController.UpdateAmmo(currentAmmo);
+        if(playerUIController != null)playerUIController.UpdateAmmo(currentAmmo);
     }
 }

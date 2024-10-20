@@ -24,9 +24,11 @@ public class Player : MonoBehaviour
         }
 
         currentInteractableObject = null;
-        playerUIController.SetHealth(0, maxHealth);
-        playerUIController.SetAmmo(0, 100);
-        playerUIController.SetCartridge(inventory);
+        if(playerUIController != null){
+            playerUIController.SetHealth(0, maxHealth);
+            playerUIController.SetAmmo(0, 100);
+            playerUIController.SetCartridge(inventory);
+        }
     }
 
     void Update()
