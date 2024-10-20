@@ -27,13 +27,14 @@ namespace GJ.AI
             if (Time.time > lastRaycastTime + raycastCooldown && distanceToPlayer <= maxRayDistance)
             {
                 Vector3 directionToPlayer = player.position - myTransform.position;
-                float maxRaycastDistance = 30f; 
+                float maxRaycastDistance = 300f;
                 int layerMask = ~(LayerMask.GetMask("Bullets") | LayerMask.GetMask("Enemy"));
-                hit = Physics2D.Raycast(myTransform.position, directionToPlayer, maxRaycastDistance, layerMask);
+                RaycastHit hit;
+                bool hasHit = Physics.Raycast(myTransform.position, directionToPlayer.normalized, out hit, maxRaycastDistance, layerMask);
 
                 lastRaycastTime = Time.time;
 
-                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                if (hasHit && hit.collider.CompareTag("Player"))
                 {
                     lastIsPlayerVisible = true;
                     return true;
@@ -46,6 +47,7 @@ namespace GJ.AI
             }
             return lastIsPlayerVisible;
         }
+
 
         protected virtual void UpdateMovementStats()
         {

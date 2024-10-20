@@ -30,8 +30,9 @@ namespace GJ.AI
                 Vector3 playerPosition = player.position; 
                 float distToPlayer = (playerPosition - myTransform.position).magnitude;
 
-                //isPlayerVisible = IsPlayerVisible();
-                isPlayerVisible = true;
+                isPlayerVisible = IsPlayerVisible();
+                Debug.Log("inimigo see " + isPlayerVisible);
+                //isPlayerVisible = true;
                 if (isPlayerVisible && !(distToPlayer >= minDistanceMovement && (isAttackAndMove || !isAttacking)))
                 {   
                     DecelerateMomentum();
@@ -45,6 +46,7 @@ namespace GJ.AI
 
                 if (distToPlayer <= minDistanceAttack && isPlayerVisible && !isAttacking)
                 {
+                    Debug.Log("inimigo atira");
                     StartCoroutine(Attack());
                 }
                 SetMovement();  

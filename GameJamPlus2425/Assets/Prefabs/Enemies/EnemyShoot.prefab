@@ -308,7 +308,7 @@ MonoBehaviour:
   player: {fileID: 0}
   maxRayDistance: 15
   acelerationRate: 0.1
-  minDistanceMovement: 10
+  minDistanceMovement: 3
   minDistanceAttack: 20
   isAttackAndMove: 0
   weapon: {fileID: 5284032897735263069}
