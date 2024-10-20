@@ -54,7 +54,7 @@ namespace GJ.Bullet{
 
         void OnTriggerEnter(Collider col) {
             if(col.CompareTag("Player") && type == BulletType.enemyBullet){
-                Player player = col.GetComponent<Player>();
+                Player player = col.GetComponentInParent<Player>();
                 player.TakeDamage(damage);
                 Debug.Log("Player receives damage");
                 CheckCollisionEnd();
