@@ -47,7 +47,8 @@ public class Player : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         playerUIController.UpdateHealth(currentHealth);
-        if(currentHealth == 0) {
+        AudioManager.Instance.Play("PlayerDamage");
+        if (currentHealth == 0) {
             Die();
         }
     }

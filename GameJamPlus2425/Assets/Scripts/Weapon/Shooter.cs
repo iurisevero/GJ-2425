@@ -63,6 +63,7 @@ public class Shooter : MonoBehaviour
     {
         if(_input.fire && canShoot && !reloading) {
             Shoot();
+            AudioManager.Instance.Play("PlayerShoot");
         }
 
         if(_input.fireRight && canShootSpecial) {
