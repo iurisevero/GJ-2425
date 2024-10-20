@@ -11,15 +11,14 @@ public class CartridgeReceiver : Interactable
         victoryDoor = GetComponentInParent<VictoryDoor>();
     }
 
-    public override void OnActionInput(Inventory inventory)
+    public override void OnActionInput()
     {
-        // base.OnActionInput(inventory);
         AddCartridges();
     }
 
     public void AddCartridges()
     {
-        foreach(KeyValuePair<string, int> item in inventory.inventory)
+        foreach(KeyValuePair<string, int> item in player.inventory)
         {
             if(item.Value == 1)
                 victoryDoor.InsertCartridge(item.Key);
@@ -28,8 +27,8 @@ public class CartridgeReceiver : Interactable
         if(victoryDoor.CheckCartridges())
         {
             pressActionObj.SetActive(false);
-            inventory.currentInteractableObject = null;
-            inventory = null;
+            player.currentInteractableObject = null;
+            player = null;
             Collider collider = GetComponent<Collider>();
             collider.enabled = false;
         }

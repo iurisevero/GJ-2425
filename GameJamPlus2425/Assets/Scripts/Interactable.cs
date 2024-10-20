@@ -4,20 +4,21 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected Inventory inventory;
+    protected Player player;
+    
+    // UI de ação temporário
     public GameObject pressActionObj;
 
-    public virtual void OnActionInput(Inventory inventory)
+    public virtual void OnActionInput()
     {
-        this.inventory = inventory;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            inventory = other.gameObject.GetComponent<Inventory>();
-            inventory.currentInteractableObject = this;
+            player = other.gameObject.GetComponent<Player>();
+            player.currentInteractableObject = this;
 
             // Show UI
             pressActionObj.SetActive(true);
@@ -28,8 +29,8 @@ public abstract class Interactable : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            inventory.currentInteractableObject = null;
-            inventory = null;
+            player.currentInteractableObject = null;
+            player = null;
 
             // Hide UI
             pressActionObj.SetActive(false);

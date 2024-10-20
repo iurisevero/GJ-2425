@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class Cartridge : Interactable
 {
-    // UI de ação temporário
     public string cartridgeKey = "";
 
-    public override void OnActionInput(Inventory inventory)
+    public override void OnActionInput()
     {
         // base.OnActionInput(inventory);
-        inventory.AddCartridge(cartridgeKey);
+        player.AddCartridge(cartridgeKey);
         DestroyCartridge();
     }
 
     public void DestroyCartridge()
     {
         pressActionObj.SetActive(false);
-        inventory.currentInteractableObject = null;
-        inventory = null;
+        player.currentInteractableObject = null;
+        player = null;
         Destroy(this.gameObject);
     } 
 }
