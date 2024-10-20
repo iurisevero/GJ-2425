@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
         inventory = new Dictionary<string, bool>();
 
         Cartridge[] cartridges = FindObjectsOfType<Cartridge>();
+        Debug.Log(cartridges);
         foreach(Cartridge cartridge in cartridges)
         {
+            Debug.Log("Key: " + cartridge.cartridgeKey);
             inventory[cartridge.cartridgeKey] = false;
         }
 
