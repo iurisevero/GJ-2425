@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  maxRayDistance: 15
+  maxRayDistance: 80
   acelerationRate: 0.1
   minDistanceMovement: 10
   minDistanceAttack: 45
