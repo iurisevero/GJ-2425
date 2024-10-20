@@ -57,6 +57,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: PlayerIdle
+    clip: {fileID: 8300000, guid: 4b5c20ec2a172494391c4cb07fdeb027, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   - name: EnemyShoot
     clip: {fileID: 8300000, guid: f160e05ee46ce2347bf5f73406a3b185, type: 3}
     volume: 1
@@ -71,6 +77,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PickItem
     clip: {fileID: 8300000, guid: 14a05a064135f3a4b829ed39df7c58ed, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: d0ad9ed28d64f0347812a24ab5be765f, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -92,4 +104,22 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: MusicEnd
+    clip: {fileID: 8300000, guid: 8cb01922791623c4cabaabdd041a1ca9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: UIGunLow
+    clip: {fileID: 8300000, guid: 17c37c9c2b64a4a488a741ce4624807d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UIHPLow
+    clip: {fileID: 8300000, guid: 7a5caeb0c0ec6db4486d9e9459b762df, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
