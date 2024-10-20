@@ -79,17 +79,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b0e697964d919f544a2ae36a367923c6, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusicGB
     clip: {fileID: 8300000, guid: 7ac875a381e78da4182fe85b36b4753b, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusicGame
     clip: {fileID: 8300000, guid: be9ac7f7c8c81664596f7e22b5212ebe, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
