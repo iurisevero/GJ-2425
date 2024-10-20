@@ -36,8 +36,11 @@ public class VictoryDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player") {
             Debug.Log("Victory");
+            Player player = other.GetComponent<Player>();
+            player.playerUIController.ShowWinScreen();
+        }
     }
 
     public bool CheckCartridges()

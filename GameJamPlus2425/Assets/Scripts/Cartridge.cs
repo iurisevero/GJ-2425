@@ -16,7 +16,7 @@ public class Cartridge : Interactable
 
     public void DestroyCartridge()
     {
-        pressActionObj.SetActive(false);
+        player.playerUIController.HidePressAction();
         player.currentInteractableObject = null;
         player = null;
         Destroy(this.gameObject);

@@ -18,15 +18,15 @@ public class CartridgeReceiver : Interactable
 
     public void AddCartridges()
     {
-        foreach(KeyValuePair<string, int> item in player.inventory)
+        foreach(KeyValuePair<string, bool> item in player.inventory)
         {
-            if(item.Value == 1)
+            if(item.Value)
                 victoryDoor.InsertCartridge(item.Key);
         }
 
         if(victoryDoor.CheckCartridges())
         {
-            pressActionObj.SetActive(false);
+            player.playerUIController.HidePressAction();
             player.currentInteractableObject = null;
             player = null;
             Collider collider = GetComponent<Collider>();

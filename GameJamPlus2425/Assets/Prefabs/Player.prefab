@@ -336,6 +336,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4176484994824527831, guid: 9e4c0da8588942649830331a1756f609, type: 3}
   specialBulletPrefab: {fileID: 7443938789107663931, guid: 8b7affd86e676424a8a4ddda03801fed, type: 3}
   bulletSpawn: {fileID: 458216761989443675}
+  playerUIController: {fileID: 0}
   rayhit: 1
   fireRate: 0.2
   bulletVelocity: 30
@@ -674,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b878778865b065a419a7dbe807e8fc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalCartridge: 5
-  currentTriggeredCartridge: {fileID: 0}
-  currentCartridgeReceiver: {fileID: 0}
   currentInteractableObject: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 0
+  playerUIController: {fileID: 0}

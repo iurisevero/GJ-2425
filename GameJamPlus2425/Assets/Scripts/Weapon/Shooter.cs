@@ -19,6 +19,7 @@ public class Shooter : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject specialBulletPrefab;
     public Transform bulletSpawn;
+    public PlayerUIController playerUIController;
 
     public bool rayhit = false;
     public float fireRate = 1.5f;
@@ -53,6 +54,8 @@ public class Shooter : MonoBehaviour
         currentAmmo = totalAmmo;
         reloading = false;
         canShoot = true;
+
+        playerUIController.SetAmmo(0, totalAmmo);
     }
 
     // Update is called once per frame
@@ -99,7 +102,7 @@ public class Shooter : MonoBehaviour
         canShoot = false;
 
         // Remove ammo
-        currentAmmo--;
+        RemoveAmmo();
 
         // Get raycast hit target
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -146,10 +149,17 @@ public class Shooter : MonoBehaviour
         timeFromLastSpecial = 0;
     }
 
+    private void RemoveAmmo()
+    {
+        currentAmmo--;
+        playerUIController.UpdateAmmo(currentAmmo);
+    }
+
     private void Reload()
     {
         reloading = true;
         // Start reload animation
+        playerUIController.ReloadAmmo(reloadTime);
         Invoke("SetReloadingValues", reloadTime);
     }
 
@@ -157,5 +167,6 @@ public class Shooter : MonoBehaviour
     {
         reloading = false;
         currentAmmo = totalAmmo;
+        playerUIController.UpdateAmmo(currentAmmo);
     }
 }

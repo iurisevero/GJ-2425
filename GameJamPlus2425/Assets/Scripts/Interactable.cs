@@ -5,9 +5,6 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     protected Player player;
-    
-    // UI de ação temporário
-    public GameObject pressActionObj;
 
     public virtual void OnActionInput()
     {
@@ -21,7 +18,7 @@ public abstract class Interactable : MonoBehaviour
             player.currentInteractableObject = this;
 
             // Show UI
-            pressActionObj.SetActive(true);
+            player.playerUIController.ShowPressAction();
         }
     }
 
@@ -29,11 +26,11 @@ public abstract class Interactable : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            // Hide UI
+            player.playerUIController.HidePressAction();
+            
             player.currentInteractableObject = null;
             player = null;
-
-            // Hide UI
-            pressActionObj.SetActive(false);
         }
     }
 }
