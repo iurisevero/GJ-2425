@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private InputHandler _input;
-    private bool hpLow;
+    private bool hpLow = false;
     public  Dictionary<string, bool> inventory;
     public Interactable currentInteractableObject;
     public int maxHealth = 100;
@@ -42,6 +42,15 @@ public class Player : MonoBehaviour
             _input.actionInput = false;
             if(currentInteractableObject)
                 currentInteractableObject.OnActionInput();
+        }
+        if (hpLow && currentHealth >= 20)
+        {
+            hpLow = false;
+        }
+        else if (hpLow == false && currentHealth < 20)
+        {
+            AudioManager.Instance.Play("UIHPLow");
+            hpLow = true;
         }
     }
 
