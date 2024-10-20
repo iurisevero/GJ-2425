@@ -51,25 +51,13 @@ namespace GJ.AI
             }  
         }
 
-private void AimWeapon()
-{
-    if (isAiming && player != null)
-    {
-        // Calcular a direção do jogador em relação à arma
-        Vector3 directionToPlayer = (player.position - weapon.transform.position).normalized;
-
-        // Calcular os ângulos de rotação desejados para y e z
-        float angleY = Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg;
-        float angleZ = Mathf.Asin(directionToPlayer.y) * Mathf.Rad2Deg;
-
-        // Definir a rotação com x fixo em 0 e aplicar localmente
-        Quaternion localRotation = Quaternion.Euler(0, angleY, angleZ);
-        weapon.transform.localRotation = localRotation;
-    }
-}
-
-
-
+        private void AimWeapon()
+        {
+            if (isAiming)
+            {
+                weapon.transform.LookAt(player.position);
+            }
+        }
 
 
 

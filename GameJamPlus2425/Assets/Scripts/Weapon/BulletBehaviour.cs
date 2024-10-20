@@ -11,7 +11,6 @@ namespace GJ.Bullet{
     public class BulletBehaviour : MonoBehaviour
     {
 
-        [HideInInspector]public Vector2 velocity;
         [HideInInspector]public float speed;
         [HideInInspector]public float rotation;
         [SerializeField]public float lifeTime;
@@ -20,8 +19,9 @@ namespace GJ.Bullet{
         [HideInInspector]public int damage;
         [HideInInspector]public float angleVelocity;
 
+        
         private SpriteRenderer bulletSpr;
-        public Vector2 direction;
+        public Vector3 direction;
 
         private Rigidbody rb;
 
@@ -34,33 +34,23 @@ namespace GJ.Bullet{
 
         void FixedUpdate()
         {
-            CalculateAngle();
             Movement();
             
             timer -= Time.deltaTime;
             if (timer <= 0) CheckTimerEnd(); 
         }
 
-        public void ChangeDirection(Vector3 target){
-            direction = (target - transform.position).normalized;
+        public void ChangeDirection(Vector3 newDirection)
+        {
+            direction = newDirection.normalized;
+            transform.forward = direction; 
         }
 
-        void Movement(){
-            velocity = Vector2.Lerp(velocity, direction, Time.deltaTime * angleVelocity);
-            rb.velocity = transform.right * speed;
+        void Movement()
+        {
+            rb.velocity = direction * speed; 
         }
 
-        void CalculateAngle(){
-            if (velocity != Vector2.zero){
-                float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-
-                if(bulletSpr != null)
-                    bulletSpr.flipY = Mathf.Abs(angle) > 90;
-
-                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                transform.rotation = targetRotation;
-            }
-        }
 
         void OnTriggerEnter(Collider col) {
             if(col.CompareTag("Player") && type == BulletType.enemyBullet){

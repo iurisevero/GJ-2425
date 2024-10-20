@@ -456,4 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b878778865b065a419a7dbe807e8fc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalCartridge: 5
   currentTriggeredCartridge: {fileID: 0}
+  currentCartridgeReceiver: {fileID: 0}
+  currentInteractableObject: {fileID: 0}

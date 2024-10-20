@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,63 +6,58 @@ namespace GJ.Bullet
 {
     public class BulletSpawner : MonoBehaviour
     {
-        float[] rotations;
+        public float delayBetweenShots = 0.1f; // Nova constante para o atraso entre tiros
+        Vector3[] rotations;
 
-        // Select a random rotation from min to max for each bullet
-        public float[] RandomRotations(SpawnRecipe recipe)
+        // Generate a random rotation within the spread range for a single bullet
+        public Vector3 RandomRotation(SpawnRecipe recipe)
         {
-            float maxRotation = -recipe.spread / 2;
-            float minRotation = recipe.spread / 2;
-            for (int i = 0; i < recipe.numberOfBullets; i++)
-            {
-                rotations[i] = Random.Range(minRotation, maxRotation);
-            }
-            return rotations;
+            float randomX = Random.Range(-recipe.spread / 2, recipe.spread / 2);
+            float randomY = Random.Range(-recipe.spread / 2, recipe.spread / 2);
+            float randomZ = Random.Range(-recipe.spread / 2, recipe.spread / 2);
+            return new Vector3(randomX, randomY, randomZ);
         }
 
-        // This will set random rotations evenly distributed between the min and max Rotation.
-        public float[] DistributedRotations(SpawnRecipe recipe)
+        // Generate a distributed rotation within the spread range for a single bullet
+        public Vector3 DistributedRotation(SpawnRecipe recipe)
         {
-            float maxRotation = -recipe.spread / 2;
-            float minRotation = recipe.spread / 2;
-
-            for (int i = 0; i < recipe.numberOfBullets; i++)
-            {
-                var fraction = (float)i / ((float)recipe.numberOfBullets - 1);
-                var difference = maxRotation - minRotation;
-                var fractionOfDifference = fraction * difference;
-                var rotation = fractionOfDifference + minRotation;
-                // Verifica se a rotação é NaN
-                if (float.IsNaN(rotation)) rotation = 0f; // Atribui 0 se for NaN
-
-                rotations[i] = rotation;
-            }
-
-            return rotations;
+            float rotationValue = Mathf.Lerp(-recipe.spread / 2, recipe.spread / 2, 0.5f); // Use fixed value since only one bullet is needed
+            return new Vector3(rotationValue, rotationValue, rotationValue);
         }
 
         public GameObject[] SpawnBullets(SpawnRecipe recipe)
         {
-            rotations = new float[recipe.numberOfBullets];
-            if (recipe.isRandom)
-            {
-                RandomRotations(recipe);
-            }
-            else
-            {
-                DistributedRotations(recipe);
-            }
-
-            // Spawn Bullets
             GameObject[] spawnedBullets = new GameObject[recipe.numberOfBullets];
-            for (int i = 0; i < recipe.numberOfBullets; i++)
-            {
-                StartCoroutine(SpawnBulletWithDelay(recipe, i, spawnedBullets));
-            }
+
+            // Start coroutine to spawn multiple bullets with delay
+            StartCoroutine(SpawnMultipleBulletsWithDelay(recipe, spawnedBullets));
             return spawnedBullets;
         }
 
-        private IEnumerator SpawnBulletWithDelay(SpawnRecipe recipe, int index, GameObject[] spawnedBullets)
+        private IEnumerator SpawnMultipleBulletsWithDelay(SpawnRecipe recipe, GameObject[] spawnedBullets)
+        {
+            for (int i = 0; i < recipe.numberOfBullets; i++)
+            {
+                Vector3 rotation;
+
+                if (recipe.isRandom)
+                {
+                    rotation = RandomRotation(recipe);
+                }
+                else
+                {
+                    rotation = DistributedRotation(recipe);
+                }
+
+                // Spawn a single bullet
+                yield return StartCoroutine(SpawnBulletWithDelay(recipe, rotation, spawnedBullets, i));
+
+                // Wait for the delay between shots before spawning the next bullet
+                yield return new WaitForSeconds(delayBetweenShots);
+            }
+        }
+
+        private IEnumerator SpawnBulletWithDelay(SpawnRecipe recipe, Vector3 rotation, GameObject[] spawnedBullets, int index)
         {
             float spawnDelay = Random.Range(0f, 0.05f);
             yield return new WaitForSeconds(spawnDelay);
@@ -92,43 +87,27 @@ namespace GJ.Bullet
             var b = bullet.GetComponent<BulletBehaviour>();
             if (b != null)
             {
-                b.rotation = rotations[index];
                 b.speed = recipe.bulletSpeed;
-
-                // Apply debuff to speed if there are multiple bullets
-                if (recipe.numberOfBullets > 1)
-                {
-                    float speedDebuff = Random.Range(-3f, 0f);
-                    b.speed += speedDebuff;
-                    if(b.speed < 0)b.speed = 0;
-                }
-
-                b.velocity = Vector2.zero;
                 b.lifeTime = recipe.lifeTime;
                 b.timer = b.lifeTime;
                 b.angleVelocity = recipe.angleVelocity;
                 b.damage = (int)recipe.damage;
                 b.type = recipe.type;
 
+                // Ensure rotation is valid before applying it
+                if (float.IsNaN(rotation.x) || float.IsNaN(rotation.y) || float.IsNaN(rotation.z))
+                {
+                    rotation = Vector3.zero; // Fallback to avoid errors
+                }
 
-                // Convert direction vector to degrees
-                float angleDegrees = Mathf.Atan2(transform.right.y, transform.right.x) * Mathf.Rad2Deg;
-
-                // Add object's rotation to the converted degrees
-                angleDegrees += b.rotation;
-
-                // Convert degrees back to radians
-                float angleRadians = angleDegrees * Mathf.Deg2Rad;
-
-                // Calculate new velocity vector using sine and cosine
-                b.velocity = new Vector2(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians));
-                b.direction = b.velocity;
+                // Apply spread to the direction using rotation
+                Vector3 directionWithSpread = Quaternion.Euler(rotation) * transform.forward;
+                b.ChangeDirection(directionWithSpread);
             }
             else
             {
                 Debug.LogError("Bullet behaviour component is missing.");
             }
-
         }
     }
 }

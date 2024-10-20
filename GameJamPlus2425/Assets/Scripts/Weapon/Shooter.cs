@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using GJ.AI;
 
 public class Shooter : MonoBehaviour
 {
@@ -97,6 +98,9 @@ public class Shooter : MonoBehaviour
 
         if(rayhit && hit.collider != null) {
             Debug.Log("Hit ray hitted: " + hit.collider.name);
+            if(hit.collider.CompareTag("Enemy")){
+                hit.collider.GetComponentInParent<EnemyStats>().TakeDamage(1); //Always take one of damage - TODO : add weapon damage
+            }
         }
 
         // Spawn projectile

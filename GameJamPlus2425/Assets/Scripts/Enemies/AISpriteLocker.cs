@@ -6,7 +6,7 @@ namespace GJ.AI
 {
     public class AISpriteLocker : MonoBehaviour
     {
-        private void Awake()
+        private void OnEnable()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             player = GameObject.FindGameObjectWithTag("Player")?.transform;

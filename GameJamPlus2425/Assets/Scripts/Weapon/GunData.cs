@@ -15,8 +15,6 @@ namespace GJ.Bullet{
 
         [SerializeField] public bool isRandom = false;
 
-        [SerializeField] public float fireRate = 1f;
-
         [SerializeField] public float bulletSpeed = 1f;
 
         [SerializeField] public Vector2 bulletVelocity = Vector2.zero;

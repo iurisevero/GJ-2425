@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angularSpeed: 100
   acceleration: 20
-  moveSpeed: 2.5
+  moveSpeed: 4
   maxHealth: 2
   aimingDelay: 0.1
-  attackDelay: 0.2
-  afterAttackDelay: 0.25
+  attackDelay: 0.4
+  afterAttackDelay: 1

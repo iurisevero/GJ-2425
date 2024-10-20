@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: EnemyGun
   m_EditorClassIdentifier: 
   bulletResource: {fileID: 5318118205841166617, guid: c83c5d9926b524445a366d02e57fd9e4, type: 3}
-  spread: 0
-  numberOfBullets: 1
-  isRandom: 0
-  fireRate: 0.5
-  bulletSpeed: 1
+  spread: 10
+  numberOfBullets: 3
+  isRandom: 1
+  fireRate: 4
+  bulletSpeed: 12
   bulletVelocity: {x: 0, y: 0}
-  lifeTime: 5
+  lifeTime: 10
   range: 40
   angleVelocity: 100
   damage: 5
