@@ -78,6 +78,7 @@ namespace GJ.AI
                 {
                     if(enemyStats != null)
                     bulletSpawner.SpawnBullets(enemyStats.CreateRecipe(gunData));
+                    AudioManager.Instance.Play("EnemyShoot");
                 }
                 
                 SetAiming(true);

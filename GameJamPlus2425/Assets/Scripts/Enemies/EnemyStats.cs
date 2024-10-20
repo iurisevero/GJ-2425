@@ -54,8 +54,9 @@ namespace GJ.AI{
 
         public void TakeDamage(float dmg){
             currentHealth -= dmg;
+            AudioManager.Instance.Play("EnemyDamage");
 
-            if(flashTimer <= 0 ){
+            if (flashTimer <= 0 ){
                 StartCoroutine(DamageFlash());
                 flashTimer = damageFlashCooldown;
             }
