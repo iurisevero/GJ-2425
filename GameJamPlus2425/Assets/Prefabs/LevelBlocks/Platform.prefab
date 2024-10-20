@@ -78,11 +78,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fc60d8e60405e6c40b9efe1e32bbc10e, type: 3}
       propertyPath: m_Name
-      value: Platform 1
+      value: Platform
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fc60d8e60405e6c40b9efe1e32bbc10e, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fc60d8e60405e6c40b9efe1e32bbc10e, type: 3}
+      propertyPath: m_TagString
+      value: Enviroment
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: fc60d8e60405e6c40b9efe1e32bbc10e, type: 3}
       propertyPath: m_LocalPosition.x
