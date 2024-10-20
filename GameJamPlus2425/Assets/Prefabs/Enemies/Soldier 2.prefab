@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f3fbd6b6083f3143816b2f59d584e9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23af32d79fc822b489c6b63c30036594, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 4646534804199960347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.897, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 5582318488229333637}
   - component: {fileID: 1826389853182115348}
   m_Layer: 0
-  m_Name: JellyFish
+  m_Name: Soldier 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e43620cbf68144fa9b3681ad850bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: b09c853d82cfb5c4e92dddced8dcfd39, type: 2}
+  enemyData: {fileID: 11400000, guid: 233c9ac5c84ae2148bde062262dfdcbf, type: 2}
   currentMoveSpeed: 0
   currentAcceleration: 0
   currentKnockbackRes: 0
@@ -291,4 +291,4 @@ MonoBehaviour:
   minDistanceAttack: 45
   isAttackAndMove: 1
   weapon: {fileID: 5284032897735263069}
-  gunData: {fileID: 11400000, guid: 5dd3a55fe738bca419f08959f5f169ab, type: 2}
+  gunData: {fileID: 11400000, guid: 74a4af9dea3bc144ca32909cf6c8babf, type: 2}

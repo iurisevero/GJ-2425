@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 274dbbb99bdc4d140a9c13034f476022, type: 3}
-  m_Name: EnemyGun
+  m_Name: JellyFIsh
   m_EditorClassIdentifier: 
   bulletResource: {fileID: 5318118205841166617, guid: c83c5d9926b524445a366d02e57fd9e4, type: 3}
-  spread: 10
-  numberOfBullets: 3
-  isRandom: 1
-  fireRate: 4
-  bulletSpeed: 12
+  spread: 0
+  numberOfBullets: 1
+  isRandom: 0
+  bulletSpeed: 14
   bulletVelocity: {x: 0, y: 0}
-  lifeTime: 10
+  lifeTime: 6
   range: 40
   angleVelocity: 100
   damage: 5
