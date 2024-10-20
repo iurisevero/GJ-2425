@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    public static string OnEscClickEvent = "InputHandler.OnEscClick";
+
     [Header("Character Input Values")]
     public Vector2 move;
     public Vector2 look;
@@ -63,43 +65,56 @@ public class InputHandler : MonoBehaviour
         ReloadInput(value.isPressed);
     }
 
+    public void OnEsc(InputValue value)
+    {
+        this.PostNotification(OnEscClickEvent);
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
+        if(Time.timeScale == 0) return;
         move = newMoveDirection;
     } 
 
     public void LookInput(Vector2 newLookDirection)
     {
+        if(Time.timeScale == 0) return;
         look = newLookDirection;
     }
 
     public void JumpInput(bool newJumpState)
     {
+        if(Time.timeScale == 0) return;
         jump = newJumpState;
     }
 
     public void SprintInput(bool newSprintState)
     {
+        if(Time.timeScale == 0) return;
         sprint = newSprintState;
     }
 
     public void FireInput(bool newFireState)
     {
+        if(Time.timeScale == 0) return;
         fire = newFireState;
     }
 
     public void FireRightInput(bool newFireState)
     {
+        if(Time.timeScale == 0) return;
         fireRight = newFireState;
     }
 
     public void ActionInput(bool newActionInputState)
     {
+        if(Time.timeScale == 0) return;
         actionInput = newActionInputState;
     }
 
     public void ReloadInput(bool newReloadState)
     {
+        if(Time.timeScale == 0) return;
         reloadInput = newReloadState;
     }
     
