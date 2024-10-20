@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         _input = GetComponent<InputHandler>();
         inventory = new Dictionary<string, bool>();
 
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         playerUIController.UpdateHealth(currentHealth);
         if(currentHealth == 0) {
             Die();

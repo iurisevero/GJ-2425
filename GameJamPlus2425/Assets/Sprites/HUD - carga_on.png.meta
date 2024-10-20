@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6c36871da6a40e349ab1c489229bf29c
+guid: bc24857cb79125d4e8ef3b489efdc0f5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HUD - carga_on_0
+      rect:
+        serializedVersion: 2
+        x: 1797
+        y: 344
+        width: 68
+        height: 422
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34fdaac10527c94b97f71491512359e
+      internalID: 1218457997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +127,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HUD - carga_on_0: 1218457997
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
