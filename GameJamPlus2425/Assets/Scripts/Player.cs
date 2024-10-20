@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private InputHandler _input;
+    private bool hpLow;
     public  Dictionary<string, bool> inventory;
     public Interactable currentInteractableObject;
     public int maxHealth = 100;
