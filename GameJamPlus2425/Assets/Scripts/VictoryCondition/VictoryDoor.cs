@@ -6,6 +6,14 @@ public class VictoryDoor : MonoBehaviour
 {
     private Collider winTrigger;
     private Dictionary<string, bool> insertedCartridges;
+    public List<GameObject> cartridgesRedObjList;
+    public List<GameObject> cartridgesBlueObjList;
+    private Dictionary<string, GameObject> cartridgesRed;
+    private Dictionary<string, GameObject> cartridgesBlue;
+    public GameObject doorRed;
+    public GameObject doorBlue;
+    public GameObject altarRed;
+    public GameObject altarBlue;
 
     // Start is called before the first frame update
     void Start()
@@ -14,12 +22,28 @@ public class VictoryDoor : MonoBehaviour
         winTrigger.enabled = false;
 
         insertedCartridges = new Dictionary<string, bool>();
+        cartridgesRed = new Dictionary<string, GameObject>();
+        cartridgesBlue = new Dictionary<string, GameObject>();
 
         Cartridge[] cartridges = FindObjectsOfType<Cartridge>();
+        int i = 0;
         foreach(Cartridge cartridge in cartridges)
         {
+            Debug.Log("i:" + i);
+            Debug.Log("List red count: " + cartridgesRedObjList.Count);
+            Debug.Log("List blue count: " + cartridgesBlueObjList.Count);
             insertedCartridges[cartridge.cartridgeKey] = false;
+            cartridgesRed[cartridge.cartridgeKey] = cartridgesRedObjList[i];
+            cartridgesBlue[cartridge.cartridgeKey] = cartridgesBlueObjList[i];
+            cartridgesRedObjList[i].SetActive(false);
+            cartridgesBlueObjList[i].SetActive(false);
+            i++;
         }
+
+        doorRed.SetActive(true);
+        doorBlue.SetActive(false);
+        altarRed.SetActive(true);
+        altarBlue.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,8 +54,25 @@ public class VictoryDoor : MonoBehaviour
 
     void SetWin()
     {
+        StartCoroutine(WinCoroutine());
+    }
+
+    private IEnumerator WinCoroutine()
+    {
+        altarRed.SetActive(false);
+        altarBlue.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        foreach(string key in cartridgesRed.Keys){
+            cartridgesRed[key].SetActive(false);
+            cartridgesBlue[key].SetActive(true);
+            yield return new WaitForSeconds(1f);
+        }
+
+        doorRed.SetActive(false);
+        doorBlue.SetActive(true);
         winTrigger.enabled = true;
-        // Do some animation or cinematic
     }
 
     void OnTriggerEnter(Collider other)
@@ -55,6 +96,8 @@ public class VictoryDoor : MonoBehaviour
     public void InsertCartridge(string cartridgeKey)
     {
         insertedCartridges[cartridgeKey] = true;
+        cartridgesRed[cartridgeKey].SetActive(true);
+
 
         if(CheckCartridges())
         {
