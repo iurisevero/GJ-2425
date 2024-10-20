@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerUIController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
         cartridgesImgMap = new Dictionary<string, Image>();
     }
 
@@ -106,11 +109,19 @@ public class PlayerUIController : MonoBehaviour
 
     public void ShowLoseScreen()
     {
-
+        loseScreen.SetActive(true);
+        StartCoroutine(Exit());
     }
 
     public void ShowWinScreen()
     {
+        winScreen.SetActive(true);
+        StartCoroutine(Exit());
+    }
 
+    private IEnumerator Exit()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(0);
     }
 }
