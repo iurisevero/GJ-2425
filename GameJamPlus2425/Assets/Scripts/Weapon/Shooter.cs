@@ -14,6 +14,7 @@ public class Shooter : MonoBehaviour
     private float timeFromLastShot;
     private bool canShootSpecial;
     private float timeFromLastSpecial;
+    private bool ammoLow = false;
 
     public Camera playerCamera;
     public GameObject bulletPrefab;
@@ -153,6 +154,15 @@ public class Shooter : MonoBehaviour
     private void RemoveAmmo()
     {
         currentAmmo--;
+        if (ammoLow && currentAmmo >= 20)
+        {
+            ammoLow = false;
+        }
+        else if (ammoLow == false && currentAmmo < 20)
+        {
+            AudioManager.Instance.Play("UIGunLow");
+            ammoLow = true;
+        }
         if(playerUIController != null)playerUIController.UpdateAmmo(currentAmmo);
     }
 
