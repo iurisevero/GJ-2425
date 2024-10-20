@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: High wall 1L OtherSide Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2936744986089729791, guid: 8f3c715cd4dc44043a24130fa9f980a2, type: 3}
+      propertyPath: m_TagString
+      value: Enviroment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
