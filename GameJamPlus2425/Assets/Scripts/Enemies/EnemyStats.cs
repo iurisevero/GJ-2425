@@ -18,8 +18,8 @@ namespace GJ.AI{
         [SerializeField] public float currentKnockbackRes;
         [SerializeField] public float currentHealth;
         
-        float damageFlashDuration = 0.2f;
-        float damageFlashCooldown = 0.2f;
+        float damageFlashDuration = 0.1f;
+        float damageFlashCooldown = 0f;
         float deathFadeTime = 0.75f;
 
         public bool isDead = false;

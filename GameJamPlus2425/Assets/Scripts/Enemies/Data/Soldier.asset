@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72645455f371ef94092a8cb8a4be1dfa, type: 3}
-  m_Name: Shoot
+  m_Name: Soldier
   m_EditorClassIdentifier: 
   angularSpeed: 100
   acceleration: 20
   moveSpeed: 4
-  maxHealth: 2
+  maxHealth: 15
   aimingDelay: 0.1
-  attackDelay: 0.4
-  afterAttackDelay: 1
+  attackDelay: 0.2
+  afterAttackDelay: 1.2
