@@ -26,6 +26,11 @@ public class Shooter : MonoBehaviour
     public float bulletRange = 100;
 
     public float specialCooldown = 10f;
+    
+    public int totalAmmo = 100;
+    public int currentAmmo = 0;
+    public float reloadTime = 2f;
+    public bool reloading = false;
 
     private void Awake()
     {
@@ -41,15 +46,18 @@ public class Shooter : MonoBehaviour
     private void Start()
     {
         _input = GetComponentInParent<InputHandler>();
-        GameObjectPoolController.AddEntry(bulletPoolKey, bulletPrefab, 10, 50);
+        GameObjectPoolController.AddEntry(bulletPoolKey, bulletPrefab, 10, totalAmmo + 10);
         timeFromLastShot = fireRate;
         timeFromLastSpecial = specialCooldown;
+        currentAmmo = totalAmmo;
+        reloading = false;
+        canShoot = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(_input.fire && canShoot) {
+        if(_input.fire && canShoot && !reloading) {
             Shoot();
         }
 
@@ -59,7 +67,7 @@ public class Shooter : MonoBehaviour
             _input.fireRight = false;
         } else if(_input.fireRight) _input.fireRight = false;
 
-        if (!canShoot)
+        if(!canShoot)
         {
             timeFromLastShot += Time.deltaTime;
             if (timeFromLastShot > fireRate)
@@ -68,12 +76,19 @@ public class Shooter : MonoBehaviour
             }
         }
 
-        if (!canShootSpecial)
+        if(!canShootSpecial)
         {
             timeFromLastSpecial += Time.deltaTime;
             if (timeFromLastSpecial > specialCooldown)
             {
                 canShootSpecial = true;
+            }
+        }
+
+        if(_input.reloadInput) {
+            _input.reloadInput = false;
+            if(!reloading) {
+                Reload();
             }
         }
     }
@@ -83,6 +98,7 @@ public class Shooter : MonoBehaviour
         canShoot = false;
 
         // Remove ammo
+        currentAmmo--;
 
         // Get raycast hit target
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -113,6 +129,9 @@ public class Shooter : MonoBehaviour
 
         // Start firerate cooldown
         timeFromLastShot = 0f;
+
+        if(currentAmmo == 0)
+            Reload();
     }
 
     private void ShootSpecial()
@@ -121,5 +140,18 @@ public class Shooter : MonoBehaviour
         GameObject special = Instantiate(specialBulletPrefab, bulletSpawn.position, Quaternion.identity);
         special.transform.forward = bulletSpawn.forward;
         timeFromLastSpecial = 0;
+    }
+
+    private void Reload()
+    {
+        reloading = true;
+        // Start reload animation
+        Invoke("SetReloadingValues", reloadTime);
+    }
+
+    private void SetReloadingValues()
+    {
+        reloading = false;
+        currentAmmo = totalAmmo;
     }
 }

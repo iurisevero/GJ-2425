@@ -11,6 +11,7 @@ public class InputHandler : MonoBehaviour
     public bool fire;
     public bool fireRight;
     public bool actionInput;
+    public bool reloadInput;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -57,6 +58,11 @@ public class InputHandler : MonoBehaviour
         ActionInput(value.isPressed);
     }
 
+    public void OnReload(InputValue value)
+    {
+        ReloadInput(value.isPressed);
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
         move = newMoveDirection;
@@ -87,9 +93,14 @@ public class InputHandler : MonoBehaviour
         fireRight = newFireState;
     }
 
-    public void ActionInput(bool newActionInput)
+    public void ActionInput(bool newActionInputState)
     {
-        actionInput = newActionInput;
+        actionInput = newActionInputState;
+    }
+
+    public void ReloadInput(bool newReloadState)
+    {
+        reloadInput = newReloadState;
     }
     
     private void OnApplicationFocus(bool hasFocus)

@@ -231,11 +231,15 @@ MonoBehaviour:
   specialBulletPrefab: {fileID: 7443938789107663931, guid: 8b7affd86e676424a8a4ddda03801fed, type: 3}
   bulletSpawn: {fileID: 458216761989443675}
   rayhit: 1
-  fireRate: 1.5
+  fireRate: 0.2
   bulletVelocity: 30
   bulletLifeTime: 3
   bulletRange: 100
   specialCooldown: 10
+  totalAmmo: 100
+  currentAmmo: 0
+  reloadTime: 2
+  reloading: 0
 --- !u!1 &1559226229356058934
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +445,7 @@ MonoBehaviour:
   fire: 0
   fireRight: 0
   actionInput: 0
+  reloadInput: 0
   analogMovement: 1
   cursorLocked: 1
   cursorInputForLook: 1
@@ -456,4 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b878778865b065a419a7dbe807e8fc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalCartridge: 5
   currentTriggeredCartridge: {fileID: 0}
+  currentCartridgeReceiver: {fileID: 0}
+  currentInteractableObject: {fileID: 0}
