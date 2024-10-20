@@ -75,20 +75,23 @@ public class PlayerUIController : MonoBehaviour
 
     public void SetCartridge(Dictionary<string, bool> inventory)
     {
-        int i = 0;
-        foreach(KeyValuePair<string, bool> cartridge in inventory) {
-            cartridgesImgMap[cartridge.Key] = cartridgesImg[i];
-            cartridgesImg[i].color = cartridge.Value ? cartridgeDisableColor : cartridgeEnableColor;
-            i++;
-        }
+        // int i = 0;
+        // Debug.Log("SetCartridge: "  + inventory);
+        // Debug.Log("cartridgesImg: " + cartridgesImg.Count);
+        // foreach(KeyValuePair<string, bool> cartridge in inventory) {
+        //     Debug.Log("cartridge: " + cartridge.Key);
+        //     cartridgesImgMap[cartridge.Key] = cartridgesImg[i];
+        //     cartridgesImg[i].color = cartridge.Value ? cartridgeDisableColor : cartridgeEnableColor;
+        //     i++;
+        // }
     }
 
     public void UpdateCartridge(string cartridge, bool found)
     {
-        if(found)
-            cartridgesImgMap[cartridge].color = cartridgeDisableColor;
-        else
-            cartridgesImgMap[cartridge].color = cartridgeEnableColor;
+        // if(found)
+        //     cartridgesImgMap[cartridge].color = cartridgeDisableColor;
+        // else
+        //     cartridgesImgMap[cartridge].color = cartridgeEnableColor;
     }
 
     public void ShowPressAction()
