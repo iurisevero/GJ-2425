@@ -35672,6 +35672,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa4b4dba782e7c48bfcdbfc009f1927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicToStart:
+  - MusicGame
+  musicToStop:
+  - MusicEnd
 --- !u!4 &1678355241
 Transform:
   m_ObjectHideFlags: 0
@@ -36410,7 +36414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1704469540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45855,9 +45859,9 @@ SceneRoots:
   - {fileID: 1825942680}
   - {fileID: 1245512121}
   - {fileID: 790475492}
+  - {fileID: 1678355241}
   - {fileID: 1748821459}
   - {fileID: 504738846}
-  - {fileID: 1678355241}
   - {fileID: 4765102966707644790}
   - {fileID: 1704469541}
   - {fileID: 1114904789}

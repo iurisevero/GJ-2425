@@ -111,12 +111,16 @@ public class PlayerUIController : MonoBehaviour
     {
         loseScreen.SetActive(true);
         StartCoroutine(Exit());
+        AudioManager.Instance.Play("MusicEnd");
+        AudioManager.Instance.Stop("MusicGame");
     }
 
     public void ShowWinScreen()
     {
         winScreen.SetActive(true);
         StartCoroutine(Exit());
+        AudioManager.Instance.Play("MusicEnd");
+        AudioManager.Instance.Stop("MusicGame");
     }
 
     private IEnumerator Exit()
