@@ -20,5 +20,6 @@ public class Cartridge : Interactable
         player.currentInteractableObject = null;
         player = null;
         Destroy(this.gameObject);
+        AudioManager.Instance.Play("PickItem");
     } 
 }

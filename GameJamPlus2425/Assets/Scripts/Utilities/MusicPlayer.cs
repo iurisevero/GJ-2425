@@ -12,7 +12,7 @@ public class MusicPlayer : MonoBehaviour
     {
         foreach (string music in musicToStart)
         {
-            AudioManager.Instance.Play(music);
+            if (AudioManager.Instance) AudioManager.Instance.Play(music);
         }
     }
 
@@ -25,7 +25,7 @@ public class MusicPlayer : MonoBehaviour
     {
         foreach (string music in musicToStop)
         {
-            AudioManager.Instance.Stop(music);
+            if(AudioManager.Instance) AudioManager.Instance.Stop(music);
         }
     }
 

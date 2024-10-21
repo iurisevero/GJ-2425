@@ -553,6 +553,7 @@ Transform:
   - {fileID: 6210888963534455199}
   - {fileID: 7290586098837167435}
   - {fileID: 8156117010477633037}
+  - {fileID: 2752877989566162013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1200137755817481361
@@ -679,3 +680,51 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   playerUIController: {fileID: 0}
+--- !u!1 &8789266808833378746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2752877989566162013}
+  - component: {fileID: 1150582817021403069}
+  m_Layer: 3
+  m_Name: IdleSoundPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2752877989566162013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8789266808833378746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2828922466110675962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150582817021403069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8789266808833378746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa4b4dba782e7c48bfcdbfc009f1927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToStart:
+  - PlayerIdle
+  musicToStop:
+  - PlayerIdle

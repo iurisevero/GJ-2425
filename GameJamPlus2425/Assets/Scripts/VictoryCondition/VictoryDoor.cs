@@ -72,6 +72,7 @@ public class VictoryDoor : MonoBehaviour
 
         doorRed.SetActive(false);
         doorBlue.SetActive(true);
+        AudioManager.Instance.Play("DoorOpen");
         winTrigger.enabled = true;
     }
 
