@@ -87,10 +87,23 @@ public class VictoryDoor : MonoBehaviour
 
     public bool CheckCartridges()
     {
-        bool canWin = true;
+        /*int canWin = 0;
         foreach(bool item in insertedCartridges.Values)
-            canWin = canWin && item;
+            if(item) canWin ++;
+        if (canWin >= 5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
         
+        //return canWin;*/
+        bool canWin = true;
+        foreach (bool item in insertedCartridges.Values)
+            canWin = canWin && item;
+
         return canWin;
     }
 
