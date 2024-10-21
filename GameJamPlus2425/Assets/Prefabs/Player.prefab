@@ -332,6 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a96b0e0fba8e8645a0cb18d68099d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletLayers:
+    serializedVersion: 2
+    m_Bits: 320
   playerCamera: {fileID: 0}
   bulletPrefab: {fileID: 4176484994824527831, guid: 9e4c0da8588942649830331a1756f609, type: 3}
   specialBulletPrefab: {fileID: 7443938789107663931, guid: 8b7affd86e676424a8a4ddda03801fed, type: 3}

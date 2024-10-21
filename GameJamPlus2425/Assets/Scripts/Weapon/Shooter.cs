@@ -7,6 +7,7 @@ using GJ.AI;
 
 public class Shooter : MonoBehaviour
 {
+    public LayerMask BulletLayers;
     private string bulletPoolKey;
     // private string specialBulletPoolKey;
     private InputHandler _input;
@@ -111,7 +112,7 @@ public class Shooter : MonoBehaviour
         RaycastHit hit;
 
         Vector3 targetPoint;
-        if(Physics.Raycast(ray, out hit, bulletRange)) {
+        if(Physics.Raycast(ray, out hit, bulletRange, ~BulletLayers)) {
             targetPoint = hit.point;
         } else {
             targetPoint = ray.GetPoint(bulletRange);
